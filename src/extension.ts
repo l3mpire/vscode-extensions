@@ -1,26 +1,26 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
+
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+import {
+	tSurroundJavaScript,
+	tSurroundHTML,
+	tSurroundHTMLSafeString,
+	tSurroundHTMLAttr,
+	tSurroundRegister
+} from './methods';
+
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "lempire" is now active!');
+	const tSurroundJavaScriptSubscription = vscode.commands.registerCommand('lempire.tSurroundJavaScript', () => tSurroundRegister(vscode.window.activeTextEditor, tSurroundJavaScript));
+	const tSurroundHTMLSubscription = vscode.commands.registerCommand('lempire.tSurroundHTML', () => tSurroundRegister(vscode.window.activeTextEditor, tSurroundHTML));
+	const tSurroundHTMLSafeStringSubscription = vscode.commands.registerCommand('lempire.tSurroundHTMLSafeString', () => tSurroundRegister(vscode.window.activeTextEditor, tSurroundHTMLSafeString));
+	const tSurroundHTMLAttrSubscription = vscode.commands.registerCommand('lempire.tSurroundHTMLAttr', () => tSurroundRegister(vscode.window.activeTextEditor, tSurroundHTMLAttr));
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('lempire.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from lempire!');
-	});
+	context.subscriptions.push(tSurroundJavaScriptSubscription);
+	context.subscriptions.push(tSurroundHTMLSubscription);
+	context.subscriptions.push(tSurroundHTMLSafeStringSubscription);
+	context.subscriptions.push(tSurroundHTMLAttrSubscription);
 
-	context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

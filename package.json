@@ -13,11 +13,47 @@
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "lempire.helloWorld",
-        "title": "Hello World"
+			{
+				"command": "lempire.tSurroundJavaScript",
+				"title": "lempire: Surround the string with _t (CallExpression)"
+			},
+			{
+				"command": "lempire.tSurroundHTML",
+				"title": "lempire: Surround the string with _t (CallExpression) [HTML]"
+			},
+			{
+				"command": "lempire.tSurroundHTMLSafeString",
+				"title": "lempire: Surround the string with _t (CallExpression) [HTML SAFE STRING]"
+			},
+			{
+				"command": "lempire.tSurroundHTMLAttr",
+				"title": "lempire: Surround the string with _t (CallExpression) [HTML ATTRIBUTE]"
+			}
+    ],
+    "menus": {
+        "editor/context": [
+					{
+            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == javascript",
+            "command": "lempire.tSurroundJavaScript",
+            "group": "lempire"
+					},
+					{
+            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == html",
+            "command": "lempire.tSurroundHTML",
+            "group": "lempire"
+					},
+					{
+            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == html",
+            "command": "lempire.tSurroundHTMLSafeString",
+            "group": "lempire"
+					},
+					{
+            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == html",
+            "command": "lempire.tSurroundHTMLAttr",
+            "group": "lempire"
+					}
+				]
       }
-    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

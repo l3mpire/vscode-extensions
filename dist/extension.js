@@ -30,27 +30,19 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.deactivate = exports.activate = void 0;
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = __importStar(__webpack_require__(1));
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+const methods_1 = __webpack_require__(2);
 function activate(context) {
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
-    // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "lempire" is now active!');
-    // The command has been defined in the package.json file
-    // Now provide the implementation of the command with registerCommand
-    // The commandId parameter must match the command field in package.json
-    let disposable = vscode.commands.registerCommand('lempire.helloWorld', () => {
-        // The code you place here will be executed every time your command is executed
-        // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World from lempire!');
-    });
-    context.subscriptions.push(disposable);
+    const tSurroundJavaScriptSubscription = vscode.commands.registerCommand('lempire.tSurroundJavaScript', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundJavaScript));
+    const tSurroundHTMLSubscription = vscode.commands.registerCommand('lempire.tSurroundHTML', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTML));
+    const tSurroundHTMLSafeStringSubscription = vscode.commands.registerCommand('lempire.tSurroundHTMLSafeString', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTMLSafeString));
+    const tSurroundHTMLAttrSubscription = vscode.commands.registerCommand('lempire.tSurroundHTMLAttr', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTMLAttr));
+    context.subscriptions.push(tSurroundJavaScriptSubscription);
+    context.subscriptions.push(tSurroundHTMLSubscription);
+    context.subscriptions.push(tSurroundHTMLSafeStringSubscription);
+    context.subscriptions.push(tSurroundHTMLAttrSubscription);
 }
 exports.activate = activate;
-// This method is called when your extension is deactivated
 function deactivate() { }
 exports.deactivate = deactivate;
 
@@ -60,6 +52,68 @@ exports.deactivate = deactivate;
 /***/ ((module) => {
 
 module.exports = require("vscode");
+
+/***/ }),
+/* 2 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.tSurroundRegister = exports.tSurroundHTMLAttr = exports.tSurroundHTMLSafeString = exports.tSurroundHTML = exports.tSurroundJavaScript = exports.tSurround = void 0;
+const tSurround = (string, options) => {
+    const { language = 'javascript', htmlAttr = false, safeString = false } = options;
+    let replaced = string;
+    const regex = /\${([^}]+)}/g;
+    const matches = string.match(regex);
+    const variables = [];
+    if (matches && matches.length > 0) {
+        for (let i = 0; i < matches.length; i++) {
+            const match = matches[i];
+            const variable = match.replace('${', '').replace('}', '');
+            variables.push(variable);
+            replaced = replaced.replace(match, `{${i}}`);
+        }
+    }
+    const params = variables.length ? `, ${variables.join(', ')}` : '';
+    if (language === 'javascript') {
+        return `_t(\`${string}\`${params})`;
+    }
+    else if (language === 'html' && htmlAttr) {
+        replaced = replaced.startsWith('"') || replaced.startsWith("'") ? replaced.substring(1, replaced.length) : replaced;
+        replaced = replaced.endsWith('"') || replaced.endsWith("'") ? replaced.substring(0, replaced.length - 1) : replaced;
+        return `(_t '${replaced}'${params})`;
+    }
+    else if (language === 'html' && safeString) {
+        return `{{{_t '${string}'${params}}}}`;
+    }
+    else if (language === 'html') {
+        return `{{_t '${string}'${params}}}`;
+    }
+    return string;
+};
+exports.tSurround = tSurround;
+const tSurroundJavaScript = (string) => (0, exports.tSurround)(string, { language: 'javascript' });
+exports.tSurroundJavaScript = tSurroundJavaScript;
+const tSurroundHTML = (string) => (0, exports.tSurround)(string, { language: 'html' });
+exports.tSurroundHTML = tSurroundHTML;
+const tSurroundHTMLSafeString = (string) => (0, exports.tSurround)(string, { language: 'html', safeString: true });
+exports.tSurroundHTMLSafeString = tSurroundHTMLSafeString;
+const tSurroundHTMLAttr = (string) => (0, exports.tSurround)(string, { language: 'html', htmlAttr: true });
+exports.tSurroundHTMLAttr = tSurroundHTMLAttr;
+const tSurroundRegister = (editor, apply) => {
+    if (editor) {
+        const { selections, document } = editor;
+        if (selections && selections.length > 0) {
+            editor.edit(editBuilder => {
+                for (let i = 0; i < selections.length; i++) {
+                    editBuilder.replace(selections[i], apply(document.getText(selections[i])));
+                }
+            });
+        }
+    }
+};
+exports.tSurroundRegister = tSurroundRegister;
+
 
 /***/ })
 /******/ 	]);
