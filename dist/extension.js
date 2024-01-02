@@ -1,1 +1,155 @@
-(()=>{"use strict";var t={112:function(t,r,e){var n=this&&this.__createBinding||(Object.create?function(t,r,e,n){void 0===n&&(n=e);var u=Object.getOwnPropertyDescriptor(r,e);u&&!("get"in u?!r.__esModule:u.writable||u.configurable)||(u={enumerable:!0,get:function(){return r[e]}}),Object.defineProperty(t,n,u)}:function(t,r,e,n){void 0===n&&(n=e),t[n]=r[e]}),u=this&&this.__setModuleDefault||(Object.create?function(t,r){Object.defineProperty(t,"default",{enumerable:!0,value:r})}:function(t,r){t.default=r}),o=this&&this.__importStar||function(t){if(t&&t.__esModule)return t;var r={};if(null!=t)for(var e in t)"default"!==e&&Object.prototype.hasOwnProperty.call(t,e)&&n(r,t,e);return u(r,t),r};Object.defineProperty(r,"__esModule",{value:!0}),r.deactivate=r.activate=void 0;const i=o(e(496)),a=e(997);r.activate=function(t){const r=i.commands.registerCommand("lempire.tSurroundJavaScript",(()=>(0,a.tSurroundRegister)(i.window.activeTextEditor,a.tSurroundJavaScript))),e=i.commands.registerCommand("lempire.tSurroundHTML",(()=>(0,a.tSurroundRegister)(i.window.activeTextEditor,a.tSurroundHTML))),n=i.commands.registerCommand("lempire.tSurroundHTMLSafeString",(()=>(0,a.tSurroundRegister)(i.window.activeTextEditor,a.tSurroundHTMLSafeString))),u=i.commands.registerCommand("lempire.tSurroundHTMLAttr",(()=>(0,a.tSurroundRegister)(i.window.activeTextEditor,a.tSurroundHTMLAttr)));t.subscriptions.push(r),t.subscriptions.push(e),t.subscriptions.push(n),t.subscriptions.push(u)},r.deactivate=function(){}},997:(t,r)=>{Object.defineProperty(r,"__esModule",{value:!0}),r.tSurroundRegister=r.tSurroundHTMLAttr=r.tSurroundHTMLSafeString=r.tSurroundHTML=r.tSurroundJavaScript=r.tSurround=void 0,r.tSurround=(t,r)=>{const{language:e="javascript",htmlAttr:n=!1,safeString:u=!1}=r;let o=t;const i=t.match(/\${([^}]+)}/g),a=[];if(i&&i.length>0)for(let t=0;t<i.length;t++){const r=i[t],e=r.replace("${","").replace("}","");a.push(e),o=o.replace(r,`{${t}}`)}const s=a.length?`, ${a.join(", ")}`:"";return"javascript"===e?`_t(\`${t}\`${s})`:"html"===e&&n?(o=o.startsWith('"')||o.startsWith("'")?o.substring(1,o.length):o,o=o.endsWith('"')||o.endsWith("'")?o.substring(0,o.length-1):o,`(_t '${o}'${s})`):"html"===e&&u?`{{{_t '${t}'${s}}}}`:"html"===e?`{{_t '${t}'${s}}}`:t},r.tSurroundJavaScript=t=>(0,r.tSurround)(t,{language:"javascript"}),r.tSurroundHTML=t=>(0,r.tSurround)(t,{language:"html"}),r.tSurroundHTMLSafeString=t=>(0,r.tSurround)(t,{language:"html",safeString:!0}),r.tSurroundHTMLAttr=t=>(0,r.tSurround)(t,{language:"html",htmlAttr:!0}),r.tSurroundRegister=(t,r)=>{if(t){const{selections:e,document:n}=t;e&&e.length>0&&t.edit((t=>{for(let u=0;u<e.length;u++)t.replace(e[u],r(n.getText(e[u])))}))}}},496:t=>{t.exports=require("vscode")}},r={},e=function e(n){var u=r[n];if(void 0!==u)return u.exports;var o=r[n]={exports:{}};return t[n].call(o.exports,o,o.exports,e),o.exports}(112);module.exports=e})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/******/ 	var __webpack_modules__ = ([
+/* 0 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.deactivate = exports.activate = void 0;
+const vscode = __importStar(__webpack_require__(1));
+const methods_1 = __webpack_require__(2);
+function activate(context) {
+    const tSurroundJavaScriptSubscription = vscode.commands.registerCommand('lempire.tSurroundJavaScript', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundJavaScript));
+    const tSurroundHTMLSubscription = vscode.commands.registerCommand('lempire.tSurroundHTML', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTML));
+    const tSurroundHTMLSafeStringSubscription = vscode.commands.registerCommand('lempire.tSurroundHTMLSafeString', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTMLSafeString));
+    const tSurroundHTMLAttrSubscription = vscode.commands.registerCommand('lempire.tSurroundHTMLAttr', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTMLAttr));
+    context.subscriptions.push(tSurroundJavaScriptSubscription);
+    context.subscriptions.push(tSurroundHTMLSubscription);
+    context.subscriptions.push(tSurroundHTMLSafeStringSubscription);
+    context.subscriptions.push(tSurroundHTMLAttrSubscription);
+}
+exports.activate = activate;
+function deactivate() { }
+exports.deactivate = deactivate;
+
+
+/***/ }),
+/* 1 */
+/***/ ((module) => {
+
+module.exports = require("vscode");
+
+/***/ }),
+/* 2 */
+/***/ ((__unused_webpack_module, exports) => {
+
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.tSurroundRegister = exports.tSurroundHTMLAttr = exports.tSurroundHTMLSafeString = exports.tSurroundHTML = exports.tSurroundJavaScript = exports.tSurround = void 0;
+const tSurround = (string, options) => {
+    const { language = 'javascript', htmlAttr = false, safeString = false } = options;
+    let replaced = string;
+    const regex = /\${([^}]+)}/g;
+    const matches = string.match(regex);
+    const variables = [];
+    if (matches && matches.length > 0) {
+        for (let i = 0; i < matches.length; i++) {
+            const match = matches[i];
+            const variable = match.replace('${', '').replace('}', '');
+            variables.push(variable);
+            replaced = replaced.replace(match, `{${i}}`);
+        }
+    }
+    const params = variables.length ? `, ${variables.join(', ')}` : '';
+    if (language === 'javascript') {
+        return `_t(\`${string}\`${params})`;
+    }
+    else if (language === 'html' && htmlAttr) {
+        replaced = replaced.startsWith('"') || replaced.startsWith("'") ? replaced.substring(1, replaced.length) : replaced;
+        replaced = replaced.endsWith('"') || replaced.endsWith("'") ? replaced.substring(0, replaced.length - 1) : replaced;
+        return `(_t '${replaced}'${params})`;
+    }
+    else if (language === 'html' && safeString) {
+        return `{{{_t '${string}'${params}}}}`;
+    }
+    else if (language === 'html') {
+        return `{{_t '${string}'${params}}}`;
+    }
+    return string;
+};
+exports.tSurround = tSurround;
+const tSurroundJavaScript = (string) => (0, exports.tSurround)(string, { language: 'javascript' });
+exports.tSurroundJavaScript = tSurroundJavaScript;
+const tSurroundHTML = (string) => (0, exports.tSurround)(string, { language: 'html' });
+exports.tSurroundHTML = tSurroundHTML;
+const tSurroundHTMLSafeString = (string) => (0, exports.tSurround)(string, { language: 'html', safeString: true });
+exports.tSurroundHTMLSafeString = tSurroundHTMLSafeString;
+const tSurroundHTMLAttr = (string) => (0, exports.tSurround)(string, { language: 'html', htmlAttr: true });
+exports.tSurroundHTMLAttr = tSurroundHTMLAttr;
+const tSurroundRegister = (editor, apply) => {
+    if (editor) {
+        const { selections, document } = editor;
+        if (selections && selections.length > 0) {
+            editor.edit(editBuilder => {
+                for (let i = 0; i < selections.length; i++) {
+                    editBuilder.replace(selections[i], apply(document.getText(selections[i])));
+                }
+            });
+        }
+    }
+};
+exports.tSurroundRegister = tSurroundRegister;
+
+
+/***/ })
+/******/ 	]);
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__(0);
+/******/ 	module.exports = __webpack_exports__;
+/******/ 	
+/******/ })()
+;
+//# sourceMappingURL=extension.js.map

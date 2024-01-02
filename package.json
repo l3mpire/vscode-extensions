@@ -38,17 +38,17 @@
             "group": "lempire"
 					},
 					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == html",
+            "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
             "command": "lempire.tSurroundHTML",
             "group": "lempire"
 					},
 					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == html",
+            "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
             "command": "lempire.tSurroundHTMLSafeString",
             "group": "lempire"
 					},
 					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == html",
+            "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
             "command": "lempire.tSurroundHTMLAttr",
             "group": "lempire"
 					}
