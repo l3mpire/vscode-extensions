@@ -23,6 +23,9 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 			replaced = replaced.replace(match, `{${i}}`);
 
+			// notes : ajouter un backslash devant les simple quotes s'il n'yen a pas
+			// si replaced est une string vide : ne rien faire - retourner la chaine d'origine
+
 		}
 	}
 

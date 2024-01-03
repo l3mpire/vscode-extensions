@@ -3,7 +3,7 @@
   "displayName": "lempire",
 	"publisher": "lempire",
   "description": "lempire vscode extension",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -37,29 +37,39 @@
 			}
     ],
     "menus": {
-        "editor/context": [
-					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == javascript",
-            "command": "lempire.tSurroundJavaScript",
-            "group": "lempire"
-					},
-					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
-            "command": "lempire.tSurroundHTML",
-            "group": "lempire"
-					},
-					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
-            "command": "lempire.tSurroundHTMLSafeString",
-            "group": "lempire"
-					},
-					{
-            "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
-            "command": "lempire.tSurroundHTMLAttr",
-            "group": "lempire"
-					}
-				]
-      }
+			"editor/context": [
+				{
+					"when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == javascript",
+					"command": "lempire.tSurroundJavaScript",
+					"group": "lempire"
+				},
+				{
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
+					"command": "lempire.tSurroundHTML",
+					"group": "lempire"
+				},
+				{
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
+					"command": "lempire.tSurroundHTMLSafeString",
+					"group": "lempire"
+				},
+				{
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
+					"command": "lempire.tSurroundHTMLAttr",
+					"group": "lempire"
+				}
+			]
+		},
+		"snippets": [
+			{
+				"language": "javascript",
+				"path": "./snippets/javascript.json"
+			},
+			{
+				"language": "handlebars",
+				"path": "./snippets/handlebars.json"
+			}
+		]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
