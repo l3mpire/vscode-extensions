@@ -7,7 +7,9 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 	let replaced = string;
 
-	const regex = /\${([^}]+)}/g;
+	const regex = language === 'javascript' ? /\${([^}]+)}/g : /{{([^}]+)}}/g;
+	const prefix = language === 'javascript' ? '${' : '{{';
+	const suffix = language === 'javascript' ? '}' : '}}';
 	const matches = string.match(regex);
 	const variables = [];
 
@@ -16,7 +18,7 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 		for(let i = 0; i < matches.length; i++){
 
 			const match = matches[i];
-			const variable = match.replace('${', '').replace('}', '');
+			const variable = match.replace(prefix, '').replace(suffix, '');
 			variables.push(variable);
 
 			replaced = replaced.replace(match, `{${i}}`);
@@ -24,7 +26,7 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 		}
 	}
 
-	const params = variables.length ? `, ${variables.join(', ')}` : '';
+	const params = variables.length ? (language === 'javascript' ? `, ${variables.join(', ')}` : ` ${variables.join(' ')}`) : '';
 
 	if(language === 'javascript'){
 
@@ -39,11 +41,11 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 	}else if(language === 'html' && safeString){
 
-		return `{{{_t '${string}'${params}}}}`;
+		return `{{{_t '${replaced}'${params}}}}`;
 
 	}else if(language === 'html'){
 
-		return `{{_t '${string}'${params}}}`;
+		return `{{_t '${replaced}'${params}}}`;
 
 	}
 
