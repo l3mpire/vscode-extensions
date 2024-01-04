@@ -33,12 +33,15 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 	if(language === 'javascript'){
 
-		return `_t(\`${string}\`${params})`;
+		replaced = replaced.startsWith('"') || replaced.startsWith("'") || replaced.startsWith("`") ? replaced.substring(1, replaced.length) : replaced;
+		replaced = replaced.endsWith('"') || replaced.endsWith("'") || replaced.endsWith("`") ? replaced.substring(0, replaced.length - 1) : replaced;
+
+		return `_t(\`${replaced}\`${params})`;
 
 	}else if(language === 'html' && htmlAttr){
 
-		replaced = replaced.startsWith('"') || replaced.startsWith("'") ? replaced.substring(1, replaced.length) : replaced;
-		replaced = replaced.endsWith('"') || replaced.endsWith("'") ? replaced.substring(0, replaced.length - 1) : replaced;
+		replaced = replaced.startsWith('"') || replaced.startsWith("'") || replaced.startsWith("`") ? replaced.substring(1, replaced.length) : replaced;
+		replaced = replaced.endsWith('"') || replaced.endsWith("'") || replaced.endsWith("`") ? replaced.substring(0, replaced.length - 1) : replaced;
 
 		return `(_t '${replaced}'${params})`;
 
