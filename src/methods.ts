@@ -1,6 +1,8 @@
 import {tSurroundOptions, tSurroundApply} from './methods.d';
 import * as vscode from 'vscode';
 
+// https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#embedded-languages
+
 export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 	const {language = 'javascript', htmlAttr = false, safeString = false} = options;

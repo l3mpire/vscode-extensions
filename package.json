@@ -59,7 +59,14 @@
 					"group": "lempire"
 				}
 			]
-		}
+		},
+		"grammars": [
+      {
+        "path": "./syntaxes/t-injection.json",
+        "scopeName": "t.injection",
+        "injectTo": ["source.html", "source.handlebars"]
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
