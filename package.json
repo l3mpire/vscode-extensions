@@ -3,7 +3,7 @@
   "displayName": "lempire",
 	"publisher": "lempire",
   "description": "lempire vscode extension",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -59,17 +59,7 @@
 					"group": "lempire"
 				}
 			]
-		},
-		"snippets": [
-			{
-				"language": "javascript",
-				"path": "./snippets/javascript.json"
-			},
-			{
-				"language": "handlebars",
-				"path": "./snippets/handlebars.json"
-			}
-		]
+		}
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
