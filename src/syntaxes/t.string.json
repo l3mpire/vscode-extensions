@@ -1,0 +1,29 @@
+{
+  "scopeName": "text.html.handlebars.t.string",
+	"injectionSelector": "meta.function.inline.other.handlebars",
+	"patterns": [
+		{ "include": "#single" },
+		{ "include": "#double" },
+		{ "include": "#param" }
+	],
+  "repository": {
+    "single": {
+      "match": "(?<=_t(\\s){1,}')[^']+",
+      "name": "t.single",
+			"patterns": [
+				{ "include": "#param" }
+			]
+    },
+		"double": {
+      "match": "(?<=_t(\\s){1,}\")[^\"]+",
+      "name": "t.double",
+			"patterns": [
+				{ "include": "#param" }
+			]
+    },
+		"param": {
+			"match": "\\{\\d\\}",
+			"name": "t.param"
+		}
+  }
+}

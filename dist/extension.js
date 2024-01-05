@@ -31,7 +31,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.deactivate = exports.activate = void 0;
 const vscode = __importStar(__webpack_require__(1));
-const methods_1 = __webpack_require__(3);
+const methods_1 = __webpack_require__(2);
 function activate(context) {
     const tSurroundJavaScriptSubscription = vscode.commands.registerCommand('lempire.tSurroundJavaScript', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundJavaScript));
     const tSurroundHTMLSubscription = vscode.commands.registerCommand('lempire.tSurroundHTML', () => (0, methods_1.tSurroundRegister)(vscode.window.activeTextEditor, methods_1.tSurroundHTML));
@@ -54,14 +54,12 @@ exports.deactivate = deactivate;
 module.exports = require("vscode");
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ ((__unused_webpack_module, exports) => {
 
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.tSurroundRegister = exports.tSurroundHTMLAttr = exports.tSurroundHTMLSafeString = exports.tSurroundHTML = exports.tSurroundJavaScript = exports.tSurround = void 0;
-// https://code.visualstudio.com/api/language-extensions/syntax-highlight-guide#embedded-languages
 const tSurround = (string, options) => {
     const { language = 'javascript', htmlAttr = false, safeString = false } = options;
     let replaced = string;
