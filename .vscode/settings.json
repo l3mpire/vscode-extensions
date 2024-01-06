@@ -13,7 +13,7 @@
     "editor.tokenColorCustomizations": {
 		"textMateRules": [
 			{
-				"scope": ["t.single", "t.double"],
+				"scope": ["t.single", "t.double", "t.standard"],
 				"settings": {
 					"foreground": "#ffffff"
 				}
@@ -21,7 +21,14 @@
 			{
 				"scope": ["t.param"],
 				"settings": {
-					"foreground": "#ff0000"
+					"foreground": "#9CDCFE"
+				}
+
+			},
+			{
+				"scope": ["t.tag"],
+				"settings": {
+					"foreground": "#569CD6"
 				}
 			}
 		]
