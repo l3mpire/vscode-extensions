@@ -1,5 +1,5 @@
 {
-  "scopeName": "text.html.handlebars.t.string",
+  "scopeName": "text.html.handlebars.t",
 	"injectionSelector": "meta.function.inline.other.handlebars",
 	"patterns": [{ "include": "#t" }],
   "repository": {

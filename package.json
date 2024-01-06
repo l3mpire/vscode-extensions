@@ -3,7 +3,7 @@
   "displayName": "lempire",
 	"publisher": "lempire",
   "description": "lempire vscode extension",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -60,10 +60,17 @@
 				}
 			]
 		},
+		"languages": [
+      {
+        "id": "t",
+        "extensions": [".html"]
+      }
+    ],
 		"grammars": [
       {
-        "path": "./src/syntaxes/t.string.json",
-        "scopeName": "text.html.handlebars.t.string",
+				"language": "t",
+        "path": "./src/syntaxes/t.json",
+        "scopeName": "text.html.handlebars.t",
         "injectTo": ["text.html.handlebars"]
       }
     ]
