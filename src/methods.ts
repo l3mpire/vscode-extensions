@@ -3,6 +3,8 @@ import * as vscode from 'vscode';
 
 export const tSurround = (string:string, options:tSurroundOptions):string => {
 
+	if(!string) return string;
+
 	const {language = 'javascript', htmlAttr = false, safeString = false} = options;
 
 	let replaced = string;
@@ -23,9 +25,6 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 			replaced = replaced.replace(match, `{${i}}`);
 
-			// notes : ajouter un backslash devant les simple quotes s'il n'yen a pas
-			// si replaced est une string vide : ne rien faire - retourner la chaine d'origine
-
 		}
 	}
 
@@ -35,6 +34,7 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 		replaced = replaced.startsWith('"') || replaced.startsWith("'") || replaced.startsWith("`") ? replaced.substring(1, replaced.length) : replaced;
 		replaced = replaced.endsWith('"') || replaced.endsWith("'") || replaced.endsWith("`") ? replaced.substring(0, replaced.length - 1) : replaced;
+		if(!replaced) return string;
 
 		return `_t(\`${replaced}\`${params})`;
 
@@ -42,14 +42,22 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 		replaced = replaced.startsWith('"') || replaced.startsWith("'") || replaced.startsWith("`") ? replaced.substring(1, replaced.length) : replaced;
 		replaced = replaced.endsWith('"') || replaced.endsWith("'") || replaced.endsWith("`") ? replaced.substring(0, replaced.length - 1) : replaced;
+		replaced = replaced.replace(/(?<!\\)'/g, "\\'");
+		if(!replaced) return string;
 
 		return `(_t '${replaced}'${params})`;
 
 	}else if(language === 'html' && safeString){
 
+		replaced = replaced.replace(/(?<!\\)'/g, "\\'");
+		if(!replaced) return string;
+
 		return `{{{_t '${replaced}'${params}}}}`;
 
 	}else if(language === 'html'){
+
+		replaced = replaced.replace(/(?<!\\)'/g, "\\'");
+		if(!replaced) return string;
 
 		return `{{_t '${replaced}'${params}}}`;
 
