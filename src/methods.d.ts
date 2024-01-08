@@ -1,4 +1,4 @@
-export type tSurroundLanguage = 'javascript' | 'html';
+export type tSurroundLanguage = 'javascript' | 'html' | 'handlebars' | 'spacebars';
 export type tSurroundHTMLAttr = boolean;
 export type tSurroundSafeString = boolean;
 export type tSurroundApply = (string:string) => string;

@@ -5,23 +5,23 @@
   "repository": {
     "single": {
       "match": "(?<=_t(\\s){1,}')[^']+",
-      "name": "t.single"
+      "name": "tSingle"
     },
 		"double": {
       "match": "(?<=_t(\\s){1,}\")[^\"]+",
-      "name": "t.double"
+      "name": "tDouble"
     },
 		"standard": {
 			"match": "[^{}]",
-			"name": "t.standard"
+			"name": "tStandard"
 		},
 		"param": {
 			"match": "\\{\\d\\}",
-			"name": "t.param"
+			"name": "tParam"
 		},
 		"tag": {
 			"match": "<[^>]*>",
-			"name": "t.tag"
+			"name": "tTag"
 		},
 		"t": {
       "name": "t.group",

@@ -9,9 +9,12 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 	let replaced = string;
 
-	const regex = language === 'javascript' ? /\${([^}]+)}/g : /{{([^}]+)}}/g;
-	const prefix = language === 'javascript' ? '${' : '{{';
-	const suffix = language === 'javascript' ? '}' : '}}';
+	const isJS = language === 'javascript';
+	const isHTML = language === 'html' || language === 'handlebars' || language === 'spacebars';
+	const regex = isJS ? /\${([^}]+)}/g : /{{([^}]+)}}/g;
+	const prefix = isJS ? '${' : '{{';
+	const suffix = isJS ? '}' : '}}';
+
 	const matches = string.match(regex);
 	const variables = [];
 
@@ -28,9 +31,9 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 		}
 	}
 
-	const params = variables.length ? (language === 'javascript' ? `, ${variables.join(', ')}` : ` ${variables.join(' ')}`) : '';
+	const params = variables.length ? (isJS ? `, ${variables.join(', ')}` : ` ${variables.join(' ')}`) : '';
 
-	if(language === 'javascript'){
+	if(isJS){
 
 		replaced = replaced.startsWith('"') || replaced.startsWith("'") || replaced.startsWith("`") ? replaced.substring(1, replaced.length) : replaced;
 		replaced = replaced.endsWith('"') || replaced.endsWith("'") || replaced.endsWith("`") ? replaced.substring(0, replaced.length - 1) : replaced;
@@ -38,7 +41,7 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 		return `_t(\`${replaced}\`${params})`;
 
-	}else if(language === 'html' && htmlAttr){
+	}else if(isHTML && htmlAttr){
 
 		replaced = replaced.startsWith('"') || replaced.startsWith("'") || replaced.startsWith("`") ? replaced.substring(1, replaced.length) : replaced;
 		replaced = replaced.endsWith('"') || replaced.endsWith("'") || replaced.endsWith("`") ? replaced.substring(0, replaced.length - 1) : replaced;
@@ -47,14 +50,14 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 		return `(_t '${replaced}'${params})`;
 
-	}else if(language === 'html' && safeString){
+	}else if(isHTML && safeString){
 
 		replaced = replaced.replace(/(?<!\\)'/g, "\\'");
 		if(!replaced) return string;
 
 		return `{{{_t '${replaced}'${params}}}}`;
 
-	}else if(language === 'html'){
+	}else if(isHTML){
 
 		replaced = replaced.replace(/(?<!\\)'/g, "\\'");
 		if(!replaced) return string;

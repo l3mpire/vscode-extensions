@@ -3,7 +3,7 @@
   "displayName": "lempire",
 	"publisher": "lempire",
   "description": "lempire vscode extension",
-  "version": "1.0.7",
+  "version": "1.0.22",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -64,7 +64,24 @@
       {
         "path": "./src/syntaxes/t.json",
         "scopeName": "text.html.handlebars.t",
-        "injectTo": ["text.html.handlebars", "text.html.spacebars"]
+				"injectTo": ["text.html.handlebars", "text.html.spacebars"]
+      }
+    ],
+		"semanticTokenTypes": [
+      {
+        "id": "tStandard",
+        "superType": "tStandard",
+        "description": "_t string"
+      },
+			{
+        "id": "tParam",
+        "superType": "tParam",
+        "description": "_t param"
+      },
+			{
+        "id": "tTag",
+        "superType": "tTag",
+        "description": "_t param"
       }
     ]
   },
