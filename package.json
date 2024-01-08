@@ -3,7 +3,7 @@
   "displayName": "lempire",
 	"publisher": "lempire",
   "description": "lempire vscode extension",
-  "version": "0.0.10",
+  "version": "1.0.5",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -64,7 +64,7 @@
       {
         "path": "./src/syntaxes/t.json",
         "scopeName": "text.html.handlebars.t",
-        "injectTo": ["text.html.handlebars"]
+        "injectTo": ["text.html.spacebars", "text.html.handlebars"]
       }
     ]
   },
