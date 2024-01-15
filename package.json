@@ -3,7 +3,7 @@
   "displayName": "lempire",
 	"publisher": "lempire",
   "description": "lempire vscode extension",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -39,7 +39,7 @@
     "menus": {
 			"editor/context": [
 				{
-					"when": "(editorHasSelection || editorHasMultipleSelections) && resourceLangId == javascript",
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == javascript || resourceLangId == typescript)",
 					"command": "lempire.tSurroundJavaScript",
 					"group": "lempire"
 				},
