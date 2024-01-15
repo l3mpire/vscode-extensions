@@ -6,7 +6,8 @@ import {
 	tSurroundHTML,
 	tSurroundHTMLSafeString,
 	tSurroundHTMLAttr,
-	tSurroundRegister
+	tSurroundRegister,
+	createTrio,
 } from './methods';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -20,6 +21,10 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(tSurroundHTMLSubscription);
 	context.subscriptions.push(tSurroundHTMLSafeStringSubscription);
 	context.subscriptions.push(tSurroundHTMLAttrSubscription);
+
+	const tCreateTrioSubscription = vscode.commands.registerCommand('lempire.createTrio', (uri:vscode.Uri) => createTrio(uri.fsPath));
+
+	context.subscriptions.push(tCreateTrioSubscription);
 
 }
 

@@ -1,5 +1,6 @@
 import {tSurroundOptions, tSurroundApply} from './methods.d';
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 
 export const tSurround = (string:string, options:tSurroundOptions):string => {
 
@@ -77,23 +78,24 @@ export const tSurroundHTMLAttr = (string:string):string => tSurround(string, {la
 export const tSurroundRegister = (editor:vscode.TextEditor | undefined, apply:tSurroundApply):void => {
 
 	if (editor) {
-
 		const { selections, document } = editor;
-
 		if (selections && selections.length > 0) {
-
 			editor.edit(editBuilder => {
-
 				for (let i = 0; i < selections.length; i++) {
-
 					editBuilder.replace(selections[i], apply(document.getText(selections[i])));
-
 				}
-
 			});
-
 		}
-
 	}
+};
 
+export const createTrio = (fsPath:string):void => {
+	const trio = ['hbs.html', 'js', 'scss'];
+	vscode.window.showInputBox({prompt: 'Enter the name of your files', placeHolder: ''}).then((name) => {
+		if(name){
+			for(const ext of trio){
+				fs.writeFileSync(`${fsPath}/${name}.${ext}`, '');
+			}
+		}
+	});
 };
