@@ -99,3 +99,20 @@ export const createTrio = (fsPath:string):void => {
 		}
 	});
 };
+
+export const createClientServerPack = (fsPath:string):void => {
+	const client = ['hbs.html', 'js', 'scss'];
+	const server = ['js'];
+	vscode.window.showInputBox({prompt: 'Enter the name of your files', placeHolder: ''}).then((name) => {
+		if(name){
+			fs.mkdirSync(`${fsPath}/client`);
+			fs.mkdirSync(`${fsPath}/server`);
+			for(const ext of client){
+				fs.writeFileSync(`${fsPath}/client/${name}.${ext}`, '');
+			}
+			for(const ext of server){
+				fs.writeFileSync(`${fsPath}/server/${name}.${ext}`, '');
+			}
+		}
+	});
+};
