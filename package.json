@@ -3,7 +3,7 @@
 	"displayName": "lempire",
 	"publisher": "lempire",
 	"description": "lempire vscode extension",
-	"version": "1.0.25",
+	"version": "1.0.26",
 	"engines": {
 		"vscode": "^1.85.0"
 	},
@@ -15,9 +15,26 @@
 		"type": "git",
 		"url": "git+https://github.com/l3mpire/vscode-extensions.git"
 	},
-	"activationEvents": [],
+	"activationEvents": [
+		"onCommand:lempire.tSurroundJavaScript",
+		"onCommand:lempire.tSurroundHTML"
+],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"keybindings": [
+      {
+        "command": "lempire.tSurroundJavaScript",
+        "key": "ctrl+t",
+        "mac": "cmd+t",
+        "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == javascript || resourceLangId == typescript)"
+      },
+			{
+        "command": "lempire.tSurroundHTML",
+        "key": "ctrl+t",
+        "mac": "cmd+t",
+        "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)"
+      }
+    ],
 		"commands": [
 			{
 				"command": "lempire.tSurroundJavaScript",
@@ -25,15 +42,15 @@
 			},
 			{
 				"command": "lempire.tSurroundHTML",
-				"title": "lempire: Surround the string with _t (CallExpression) [HTML]"
+				"title": "lempire: Surround the string with {{_t}} (CallExpression) [HTML]"
 			},
 			{
 				"command": "lempire.tSurroundHTMLSafeString",
-				"title": "lempire: Surround the string with _t (CallExpression) [HTML SAFE STRING]"
+				"title": "lempire: Surround the string with {{{_t}}} (CallExpression) [HTML SAFE STRING]"
 			},
 			{
 				"command": "lempire.tSurroundHTMLAttr",
-				"title": "lempire: Surround the string with _t (CallExpression) [HTML ATTRIBUTE]"
+				"title": "lempire: Surround the string with (_t) (CallExpression) [HTML ATTRIBUTE]"
 			},
 			{
 				"command": "lempire.createTrio",

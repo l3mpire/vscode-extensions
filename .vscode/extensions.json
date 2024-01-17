@@ -1,5 +1,15 @@
 {
-  // See http://go.microsoft.com/fwlink/?LinkId=827846
-  // for the documentation about the extensions.json format
-  "recommendations": ["dbaeumer.vscode-eslint", "amodio.tsl-problem-matcher", "ms-vscode.extension-test-runner"]
+  "recommendations": [
+		"dbaeumer.vscode-eslint",
+		"streetsidesoftware.code-spell-checker",
+		"oouo-diogo-perdigao.docthis",
+		"editorconfig.editorconfig",
+		"github.copilot",
+		"github.copilot-chat",
+		"lempire.lempire",
+		"christian-kohler.path-intellisense",
+		"ms-playwright.playwright",
+		"sonarsource.sonarlint-vscode",
+		"stylelint.vscode-stylelint"
+	]
 }
