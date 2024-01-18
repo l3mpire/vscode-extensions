@@ -3,7 +3,7 @@
 	"displayName": "lempire",
 	"publisher": "lempire",
 	"description": "lempire vscode extension",
-	"version": "1.0.26",
+	"version": "1.0.27",
 	"engines": {
 		"vscode": "^1.85.0"
 	},
@@ -32,7 +32,7 @@
         "command": "lempire.tSurroundHTML",
         "key": "ctrl+t",
         "mac": "cmd+t",
-        "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)"
+        "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars || resourceLangId == spacebars)"
       }
     ],
 		"commands": [
@@ -81,17 +81,17 @@
 					"group": "lempire"
 				},
 				{
-					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars || resourceLangId == spacebars)",
 					"command": "lempire.tSurroundHTML",
 					"group": "lempire"
 				},
 				{
-					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars || resourceLangId == spacebars)",
 					"command": "lempire.tSurroundHTMLSafeString",
 					"group": "lempire"
 				},
 				{
-					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars)",
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == html || resourceLangId == handlebars || resourceLangId == spacebars)",
 					"command": "lempire.tSurroundHTMLAttr",
 					"group": "lempire"
 				}
