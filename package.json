@@ -3,7 +3,7 @@
 	"displayName": "lempire",
 	"publisher": "lempire",
 	"description": "lempire vscode extension",
-	"version": "1.0.27",
+	"version": "1.0.28",
 	"engines": {
 		"vscode": "^1.85.0"
 	},
@@ -17,6 +17,7 @@
 	},
 	"activationEvents": [
 		"onCommand:lempire.tSurroundJavaScript",
+		"onCommand:lempire.tSurroundJsx",
 		"onCommand:lempire.tSurroundHTML"
 ],
 	"main": "./dist/extension.js",
@@ -29,6 +30,12 @@
         "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == javascript || resourceLangId == typescript)"
       },
 			{
+        "command": "lempire.tSurroundJsx",
+        "key": "ctrl+t",
+        "mac": "cmd+t",
+        "when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == javascriptreact || resourceLangId == typescriptreact)"
+      },
+			{
         "command": "lempire.tSurroundHTML",
         "key": "ctrl+t",
         "mac": "cmd+t",
@@ -38,6 +45,10 @@
 		"commands": [
 			{
 				"command": "lempire.tSurroundJavaScript",
+				"title": "lempire: Surround the string with _t (CallExpression)"
+			},
+			{
+				"command": "lempire.tSurroundJsx",
 				"title": "lempire: Surround the string with _t (CallExpression)"
 			},
 			{
@@ -78,6 +89,11 @@
 				{
 					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == javascript || resourceLangId == typescript)",
 					"command": "lempire.tSurroundJavaScript",
+					"group": "lempire"
+				},
+				{
+					"when": "(editorHasSelection || editorHasMultipleSelections) && (resourceLangId == javascriptreact || resourceLangId == typescriptreact)",
+					"command": "lempire.tSurroundJsx",
 					"group": "lempire"
 				},
 				{

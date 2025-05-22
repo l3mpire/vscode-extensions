@@ -10,7 +10,7 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 
 	let replaced = string;
 
-	const isJS = language === 'javascript';
+	const isJS = ['javascript', 'javascriptreact'].includes(language);
 	const isHTML = language === 'html' || language === 'handlebars' || language === 'spacebars';
 	const regex = isJS ? /\${([^}]+)}/g : /{{([^}]+)}}/g;
 	const prefix = isJS ? '${' : '{{';
@@ -72,6 +72,7 @@ export const tSurround = (string:string, options:tSurroundOptions):string => {
 };
 
 export const tSurroundJavaScript = (string:string):string => tSurround(string, {language: 'javascript'});
+export const tSurroundJsx = (string:string):string => tSurround(string, {language: 'javascriptreact'});
 export const tSurroundHTML = (string:string):string => tSurround(string, {language: 'html'});
 export const tSurroundHTMLSafeString = (string:string):string => tSurround(string, {language: 'html', safeString: true});
 export const tSurroundHTMLAttr = (string:string):string => tSurround(string, {language: 'html', htmlAttr: true});
